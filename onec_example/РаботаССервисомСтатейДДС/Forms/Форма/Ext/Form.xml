@@ -57,6 +57,11 @@
 					<CommandName>Form.Command.ВыполнитьОбучение</CommandName>
 					<ExtendedTooltip name="ВыполнитьОбучениеРасширеннаяПодсказка" id="10"/>
 				</Button>
+				<Button name="ВыполнитьТестирование" id="28">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ВыполнитьТестирование</CommandName>
+					<ExtendedTooltip name="ВыполнитьТестированиеРасширеннаяПодсказка" id="29"/>
+				</Button>
 			</ChildItems>
 		</UsualGroup>
 		<UsualGroup name="ГруппаПроверка" id="14">
@@ -203,7 +208,7 @@
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Выполнить обучение</v8:content>
+					<v8:content>Обучение</v8:content>
 				</v8:item>
 			</Title>
 			<ToolTip>
@@ -218,7 +223,7 @@
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Проверить модель</v8:content>
+					<v8:content>Проверка</v8:content>
 				</v8:item>
 			</Title>
 			<ToolTip>
@@ -228,6 +233,21 @@
 				</v8:item>
 			</ToolTip>
 			<Action>ПроверитьМодель</Action>
+		</Command>
+		<Command name="ВыполнитьТестирование" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тестирование</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выполнить тестирование</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ВыполнитьТестирование</Action>
 		</Command>
 	</Commands>
 </Form>
