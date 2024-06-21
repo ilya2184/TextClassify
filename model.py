@@ -1,3 +1,4 @@
+import os
 import joblib
 
 from tempfile import mkdtemp
@@ -6,7 +7,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from config import MODEL_CACHE
+from config import MODEL_CACHE, MODEL_DIR
+
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 cachedir = mkdtemp()
 memory = Memory(location=cachedir, verbose=0)
@@ -25,14 +28,18 @@ def train_model(data, model_id):
     ], memory=memory)
     
     pipeline.fit(X, y)
-    joblib.dump(pipeline, f'{model_id}.joblib')
+
+    model_path = os.path.join(MODEL_DIR, f'model_{model_id}.joblib')
+    joblib.dump(pipeline, model_path)
+    print(f"Model saved to {model_path}")
 
 def load_model(model_id):
     if model_id in MODEL_CACHE:
         print(f"Model {model_id} loaded from cache.")
         return MODEL_CACHE[model_id]
     else:
-        model = joblib.load(f'{model_id}.joblib')
+        model_path = os.path.join(MODEL_DIR, f'model_{model_id}.joblib')
+        model = joblib.load(model_path)
         MODEL_CACHE[model_id] = model
         print(f"Model {model_id} loaded from file.")
         return model
