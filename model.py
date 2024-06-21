@@ -12,6 +12,7 @@ cachedir = mkdtemp()
 memory = Memory(location=cachedir, verbose=0)
 
 def train_model(data, model_id):
+    data = data[['ВидОперации', 'НазначениеПлатежа', 'СтатьяДвиженияДенежныхСредств']].dropna()
     X = data[['ВидОперации', 'НазначениеПлатежа']]
     y = data['СтатьяДвиженияДенежныхСредств']
     column_transformer = ColumnTransformer([
