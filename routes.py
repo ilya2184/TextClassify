@@ -14,9 +14,9 @@ def setup_routes(app):
     @app.route('/predict', methods=['POST'])
     def predict():
         model_id = request.form['model_id']
-        operаtaion = request.form['operаtaion']
+        operation = request.form['operation']
         text = request.form['text']
-        sample_data = pd.DataFrame({ 'ВидОперации': [operаtaion], 'НазначениеПлатежа': [text] })
+        sample_data = pd.DataFrame({ 'ВидОперации': [operation], 'НазначениеПлатежа': [text] })
         model = load_model(model_id)
         prediction = model.predict(sample_data)
         return jsonify({"article": prediction[0]})
