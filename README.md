@@ -42,6 +42,9 @@
 
 Обучить модель `/train`; Использовать и радоваться: `/predict`
 
+Пример использования `onec_example` - выгрузка обработки (файлы в формате 1С) с примером использования.
+В обработке используется [КоннекторHTTP](https://github.com/vbondarevsky/Connector) Владимира Бондаревского.
+
 Примеры из postman:
 ![image](https://github.com/ilya2184/TextClassify/assets/14931660/8a93ec21-f530-43df-aa5b-7fa0faf20768)
 ![image](https://github.com/ilya2184/TextClassify/assets/14931660/180340a6-035f-4896-b7e8-fc84ad98605e)
