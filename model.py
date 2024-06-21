@@ -1,5 +1,7 @@
 import os
 import joblib
+import re
+import pandas as pd
 
 from tempfile import mkdtemp
 from joblib import Memory
@@ -15,13 +17,23 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 cachedir = mkdtemp()
 memory = Memory(location=cachedir, verbose=0)
 
+x1n = 'ВидОперации'
+x2n = 'НазначениеПлатежа'
+yn = 'СтатьяДвиженияДенежныхСредств'
+
+def clean_text(text):
+    return re.sub(r'\d', '0', text)
+
 def train_model(data, model_id):
-    data = data[['ВидОперации', 'НазначениеПлатежа', 'СтатьяДвиженияДенежныхСредств']].dropna()
-    X = data[['ВидОперации', 'НазначениеПлатежа']]
-    y = data['СтатьяДвиженияДенежныхСредств']
+    data = data[[x1n, x2n, yn]].dropna()
+    
+    data[x2n] = data[x2n].apply(clean_text)
+
+    X = data[[x1n, x2n]]
+    y = data[yn]
     column_transformer = ColumnTransformer([
-        ('vid_operacii_tfidf', TfidfVectorizer(), 'ВидОперации'),
-        ('naznach_platega_tfidf', TfidfVectorizer(), 'НазначениеПлатежа')
+        ('x1_tfidf', TfidfVectorizer(), x1n),
+        ('x2_tfidf', TfidfVectorizer(), x2n)
     ])
     pipeline = Pipeline([
         ('transformer', column_transformer),
@@ -30,18 +42,37 @@ def train_model(data, model_id):
     
     pipeline.fit(X, y)
 
+    # Remove the old model from cache if it exists
+    if model_id in MODEL_CACHE:
+        del MODEL_CACHE[model_id]
+        print(f"Model {model_id} removed from cache.")
+
     model_path = os.path.join(MODEL_DIR, f'model_{model_id}.joblib')
     joblib.dump(pipeline, model_path)
     print(f"Model saved to {model_path}")
 
 def test_model(data, model_id):
-    data = data[['ВидОперации', 'НазначениеПлатежа', 'СтатьяДвиженияДенежныхСредств']].dropna()
-    X = data[['ВидОперации', 'НазначениеПлатежа']]
-    y = data['СтатьяДвиженияДенежныхСредств']
+    data = data[[x1n, x2n, yn]].dropna()
+    
+    data[x2n] = data[x2n].apply(clean_text)
+
+    X = data[[x1n, x2n]]
+    y = data[yn]
     model = load_model(model_id)
     predictions = model.predict(X)
     accuracy = accuracy_score(y, predictions)
     return accuracy
+
+def predict_model(data, model_id):
+    data[x2n] = data[x2n].apply(clean_text)
+    model = load_model(model_id)
+    prediction = model.predict(data)
+    confidence = model.predict_proba(data).max(axis=1)
+    predata = {
+        "prediction": prediction[0],
+        "confidence": confidence[0],
+    }
+    return predata  
 
 def load_model(model_id):
     if model_id in MODEL_CACHE:
