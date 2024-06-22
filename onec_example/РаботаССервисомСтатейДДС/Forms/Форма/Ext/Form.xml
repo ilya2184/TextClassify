@@ -5,115 +5,252 @@
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
 	<ChildItems>
-		<UsualGroup name="ГруппаОбучение" id="1">
+		<Pages name="ГруппаТраницыФункций" id="30">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Обучение</v8:content>
+					<v8:content>Группа траницы функций</v8:content>
 				</v8:item>
 			</Title>
 			<ToolTip>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Группа обучение</v8:content>
+					<v8:content>Группа траницы функций</v8:content>
 				</v8:item>
 			</ToolTip>
-			<Representation>None</Representation>
-			<ExtendedTooltip name="ГруппаОбучениеРасширеннаяПодсказка" id="2"/>
+			<ExtendedTooltip name="ГруппаТраницыФункцийРасширеннаяПодсказка" id="31"/>
 			<ChildItems>
-				<UsualGroup name="ГруппаПериод" id="24">
+				<Page name="ГруппаМодель" id="34">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Группа период</v8:content>
+							<v8:content>Модель</v8:content>
 						</v8:item>
 					</Title>
 					<ToolTip>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Группа период</v8:content>
+							<v8:content>Группа модель</v8:content>
 						</v8:item>
 					</ToolTip>
-					<Representation>None</Representation>
-					<ShowTitle>false</ShowTitle>
-					<ExtendedTooltip name="ГруппаПериодРасширеннаяПодсказка" id="25"/>
+					<ExtendedTooltip name="ГруппаМодельРасширеннаяПодсказка" id="35"/>
 					<ChildItems>
-						<InputField name="ДатаНачала" id="3">
-							<DataPath>ДатаНачала</DataPath>
-							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="4"/>
-							<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="5"/>
-						</InputField>
-						<InputField name="ДатаОкончания" id="6">
-							<DataPath>ДатаОкончания</DataPath>
-							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="7"/>
-							<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="8"/>
-						</InputField>
+						<UsualGroup name="ГруппаОбучение" id="1">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Обучение</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа обучение</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Vertical</Group>
+							<Representation>None</Representation>
+							<ExtendedTooltip name="ГруппаОбучениеРасширеннаяПодсказка" id="2"/>
+							<ChildItems>
+								<UsualGroup name="ГруппаПериод" id="24">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа период</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа период</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаПериодРасширеннаяПодсказка" id="25"/>
+									<ChildItems>
+										<InputField name="ДатаНачала" id="3">
+											<DataPath>ДатаНачала</DataPath>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="4"/>
+											<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="5"/>
+										</InputField>
+										<InputField name="ДатаОкончания" id="6">
+											<DataPath>ДатаОкончания</DataPath>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="7"/>
+											<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="8"/>
+										</InputField>
+										<Button name="ВыполнитьОбучение" id="9">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.ВыполнитьОбучение</CommandName>
+											<ExtendedTooltip name="ВыполнитьОбучениеРасширеннаяПодсказка" id="10"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="ГруппаТестирование" id="32">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа тестирование</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа тестирование</v8:content>
+										</v8:item>
+									</ToolTip>
+									<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+									<Group>Vertical</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаТестированиеРасширеннаяПодсказка" id="33"/>
+									<ChildItems>
+										<Button name="ВыполнитьТестирование" id="28">
+											<Type>UsualButton</Type>
+											<CommandName>Form.Command.ВыполнитьТестирование</CommandName>
+											<ExtendedTooltip name="ВыполнитьТестированиеРасширеннаяПодсказка" id="29"/>
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ГруппаПроверка" id="14">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Проверка</v8:content>
+								</v8:item>
+							</Title>
+							<Representation>None</Representation>
+							<ExtendedTooltip name="ГруппаПроверкаРасширеннаяПодсказка" id="15"/>
+							<ChildItems>
+								<UsualGroup name="ГруппаПараметрыПроверки" id="26">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа параметры проверки</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа параметры проверки</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Group>Vertical</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаПараметрыПроверкиРасширеннаяПодсказка" id="27"/>
+									<ChildItems>
+										<InputField name="ВидОперации" id="16">
+											<DataPath>ВидОперации</DataPath>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="ВидОперацииКонтекстноеМеню" id="17"/>
+											<ExtendedTooltip name="ВидОперацииРасширеннаяПодсказка" id="18"/>
+										</InputField>
+										<InputField name="НазначениеПлатежа" id="19">
+											<DataPath>НазначениеПлатежа</DataPath>
+											<MultiLine>true</MultiLine>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="НазначениеПлатежаКонтекстноеМеню" id="20"/>
+											<ExtendedTooltip name="НазначениеПлатежаРасширеннаяПодсказка" id="21"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+								<Button name="ПроверитьМодель" id="22">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ПроверитьМодель</CommandName>
+									<ExtendedTooltip name="ПроверитьМодельРасширеннаяПодсказка" id="23"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
 					</ChildItems>
-				</UsualGroup>
-				<Button name="ВыполнитьОбучение" id="9">
-					<Type>UsualButton</Type>
-					<CommandName>Form.Command.ВыполнитьОбучение</CommandName>
-					<ExtendedTooltip name="ВыполнитьОбучениеРасширеннаяПодсказка" id="10"/>
-				</Button>
-				<Button name="ВыполнитьТестирование" id="28">
-					<Type>UsualButton</Type>
-					<CommandName>Form.Command.ВыполнитьТестирование</CommandName>
-					<ExtendedTooltip name="ВыполнитьТестированиеРасширеннаяПодсказка" id="29"/>
-				</Button>
-			</ChildItems>
-		</UsualGroup>
-		<UsualGroup name="ГруппаПроверка" id="14">
-			<Title>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Проверка</v8:content>
-				</v8:item>
-			</Title>
-			<Representation>None</Representation>
-			<ExtendedTooltip name="ГруппаПроверкаРасширеннаяПодсказка" id="15"/>
-			<ChildItems>
-				<UsualGroup name="ГруппаПараметрыПроверки" id="26">
+				</Page>
+				<Page name="ГруппаЛевенштейн" id="36">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Группа параметры проверки</v8:content>
+							<v8:content>Левенштейн</v8:content>
 						</v8:item>
 					</Title>
 					<ToolTip>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Группа параметры проверки</v8:content>
+							<v8:content>Группа левенштейн</v8:content>
 						</v8:item>
 					</ToolTip>
-					<Group>Vertical</Group>
-					<Representation>None</Representation>
-					<ShowTitle>false</ShowTitle>
-					<ExtendedTooltip name="ГруппаПараметрыПроверкиРасширеннаяПодсказка" id="27"/>
+					<ExtendedTooltip name="ГруппаЛевенштейнРасширеннаяПодсказка" id="37"/>
 					<ChildItems>
-						<InputField name="ВидОперации" id="16">
-							<DataPath>ВидОперации</DataPath>
-							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="ВидОперацииКонтекстноеМеню" id="17"/>
-							<ExtendedTooltip name="ВидОперацииРасширеннаяПодсказка" id="18"/>
-						</InputField>
-						<InputField name="НазначениеПлатежа" id="19">
-							<DataPath>НазначениеПлатежа</DataPath>
-							<MultiLine>true</MultiLine>
-							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="НазначениеПлатежаКонтекстноеМеню" id="20"/>
-							<ExtendedTooltip name="НазначениеПлатежаРасширеннаяПодсказка" id="21"/>
-						</InputField>
+						<UsualGroup name="ГруппаЛевоПраво" id="46">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа лево право</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа лево право</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаЛевоПравоРасширеннаяПодсказка" id="47"/>
+							<ChildItems>
+								<InputField name="СписокНомеров" id="41">
+									<DataPath>СписокНомеров</DataPath>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Список номеров которые будут подбираться в назначении платежа</v8:content>
+										</v8:item>
+									</ToolTip>
+									<MultiLine>true</MultiLine>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="СписокНомеровКонтекстноеМеню" id="42"/>
+									<ExtendedTooltip name="СписокНомеровРасширеннаяПодсказка" id="43"/>
+								</InputField>
+								<InputField name="НазначениеПлатежа1" id="38">
+									<DataPath>НазначениеПлатежа</DataPath>
+									<MultiLine>true</MultiLine>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="НазначениеПлатежа1КонтекстноеМеню" id="39"/>
+									<ExtendedTooltip name="НазначениеПлатежа1РасширеннаяПодсказка" id="40"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ГруппаКнопкиСправа" id="48">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа кнопки справа</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа кнопки справа</v8:content>
+								</v8:item>
+							</ToolTip>
+							<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаКнопкиСправаРасширеннаяПодсказка" id="49"/>
+							<ChildItems>
+								<Button name="ПодобратьНомер" id="44">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ПодобратьНомер</CommandName>
+									<ExtendedTooltip name="ПодобратьНомерРасширеннаяПодсказка" id="45"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
 					</ChildItems>
-				</UsualGroup>
-				<Button name="ПроверитьМодель" id="22">
-					<Type>UsualButton</Type>
-					<CommandName>Form.Command.ПроверитьМодель</CommandName>
-					<ExtendedTooltip name="ПроверитьМодельРасширеннаяПодсказка" id="23"/>
-				</Button>
+				</Page>
 			</ChildItems>
-		</UsualGroup>
+		</Pages>
 		<InputField name="ОтветСервера" id="11">
 			<DataPath>ОтветСервера</DataPath>
 			<AutoMaxWidth>false</AutoMaxWidth>
@@ -202,6 +339,21 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
+		<Attribute name="СписокНомеров" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номера</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
 	</Attributes>
 	<Commands>
 		<Command name="ВыполнитьОбучение" id="1">
@@ -248,6 +400,21 @@
 				</v8:item>
 			</ToolTip>
 			<Action>ВыполнитьТестирование</Action>
+		</Command>
+		<Command name="ПодобратьНомер" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подобрать номер</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подобрать номер</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПодобратьНомер</Action>
 		</Command>
 	</Commands>
 </Form>

@@ -2,6 +2,7 @@ import pandas as pd
 
 from flask import request, jsonify
 from model import train_model, test_model, predict_model
+from textutils import find_best_match
 
 def setup_routes(app):
     @app.route('/train', methods=['POST'])
@@ -29,3 +30,14 @@ def setup_routes(app):
             "article": predata.get("prediction"),
             "confidence": predata.get("confidence")
         })
+    
+    @app.route('/stringmatch', methods=['POST'])
+    def stringmatch():
+        data = request.get_json()
+        strings_list = data.get('string_list', [])
+        text = data.get('text', '')
+        prediction = find_best_match(strings_list, text)
+        return jsonify({
+            "prediction": prediction
+        })
+   
