@@ -5,6 +5,13 @@ from model import train_model, test_model, predict_model
 from textutils import find_best_match
 
 def setup_routes(app):
+
+    @app.route('/ping', methods=['GET','POST'])
+    def ping():
+        return jsonify({
+            "Ready": "POST train, test, predict or stringmatch. https://github.com/ilya2184/TextClassify"
+        })
+
     @app.route('/train', methods=['POST'])
     def train():
         data = pd.read_excel(request.files['file'])
