@@ -43,7 +43,8 @@ def setup_routes(app):
         data = request.get_json()
         strings_list = data.get('string_list', [])
         text = data.get('text', '')
-        prediction = find_best_match(strings_list, text)
+        length_penalty_factor = data.get('length_penalty_factor', -0.01)
+        prediction = find_best_match(strings_list, text, length_penalty_factor)
         return jsonify({
             "prediction": prediction
         })

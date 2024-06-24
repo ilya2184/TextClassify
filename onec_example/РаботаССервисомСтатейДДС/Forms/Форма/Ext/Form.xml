@@ -240,6 +240,12 @@
 							<ShowTitle>false</ShowTitle>
 							<ExtendedTooltip name="ГруппаКнопкиСправаРасширеннаяПодсказка" id="49"/>
 							<ChildItems>
+								<InputField name="ШтрафЗаДлину" id="50">
+									<DataPath>ШтрафЗаДлину</DataPath>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ШтрафЗаДлинуКонтекстноеМеню" id="51"/>
+									<ExtendedTooltip name="ШтрафЗаДлинуРасширеннаяПодсказка" id="52"/>
+								</InputField>
 								<Button name="ПодобратьНомер" id="44">
 									<Type>UsualButton</Type>
 									<CommandName>Form.Command.ПодобратьНомер</CommandName>
@@ -352,6 +358,22 @@
 					<v8:Length>0</v8:Length>
 					<v8:AllowedLength>Variable</v8:AllowedLength>
 				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ШтрафЗаДлину" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Штраф за длину</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>4</v8:Digits>
+					<v8:FractionDigits>3</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
 	</Attributes>

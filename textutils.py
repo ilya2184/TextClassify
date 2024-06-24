@@ -8,11 +8,10 @@ def clean_text(text):
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
-def find_best_match(string_list, text):
+def find_best_match(string_list, text, length_penalty_factor):
     cleaned_text = clean_text(text)
     best_match = None
     best_score = float('inf')
-    length_penalty_factor = -0.1  # Коэффициент штрафа за длину
 
     for current_string in string_list:
         cleaned_current_string = clean_text(current_string)
