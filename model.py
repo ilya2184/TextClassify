@@ -10,7 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
-from config import MODEL_CACHE, MODEL_DIR
+from config import MODEL_CACHE, MODEL_DIR, INSIGNIFICANT_WORDS
 
 os.makedirs(MODEL_DIR, exist_ok=True)
 
@@ -22,7 +22,11 @@ x2n = 'НазначениеПлатежа'
 yn = 'СтатьяДвиженияДенежныхСредств'
 
 def clean_text(text):
-    return re.sub(r'\d', '0', text)
+    text = text.lower()
+    for word in INSIGNIFICANT_WORDS:
+        text = re.sub(r'\b' + word + r'\b', '', text, flags=re.IGNORECASE)
+    text= re.sub(r'\d', '0', text)
+    return text
 
 def train_model(data, model_id):
     data = data[[x1n, x2n, yn]].dropna()
@@ -70,9 +74,9 @@ def predict_model(data, model_id):
     confidence = model.predict_proba(data).max(axis=1)
     predata = {
         "prediction": prediction[0],
-        "confidence": confidence[0],
+        "confidence": confidence[0]
     }
-    return predata  
+    return predata
 
 def load_model(model_id):
     if model_id in MODEL_CACHE:
