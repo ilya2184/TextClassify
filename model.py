@@ -1,7 +1,6 @@
 import os
 import joblib
 import re
-import pandas as pd
 
 from tempfile import mkdtemp
 from joblib import Memory
@@ -11,6 +10,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score
 from config import MODEL_CACHE, MODEL_DIR, INSIGNIFICANT_WORDS
+from app_logging import writelog
 
 os.makedirs(MODEL_DIR, exist_ok=True)
 
@@ -49,11 +49,11 @@ def train_model(data, model_id):
     # Remove the old model from cache if it exists
     if model_id in MODEL_CACHE:
         del MODEL_CACHE[model_id]
-        print(f"Model {model_id} removed from cache.")
+        writelog(f"Model {model_id} removed from cache.")
 
     model_path = os.path.join(MODEL_DIR, f'model_{model_id}.joblib')
     joblib.dump(pipeline, model_path)
-    print(f"Model saved to {model_path}")
+    writelog(f"Model saved to {model_path}")
 
 def test_model(data, model_id):
     data = data[[x1n, x2n, yn]].dropna()
@@ -80,11 +80,11 @@ def predict_model(data, model_id):
 
 def load_model(model_id):
     if model_id in MODEL_CACHE:
-        print(f"Model {model_id} loaded from cache.")
+        writelog(f"Model {model_id} loaded from cache.")
         return MODEL_CACHE[model_id]
     else:
         model_path = os.path.join(MODEL_DIR, f'model_{model_id}.joblib')
         model = joblib.load(model_path)
         MODEL_CACHE[model_id] = model
-        print(f"Model {model_id} loaded from file.")
+        writelog(f"Model {model_id} loaded from file.")
         return model
