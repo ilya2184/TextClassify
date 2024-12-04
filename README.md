@@ -37,7 +37,7 @@
 `docker build --tag textclassify .`
 
 Запустить
-`docker run --name article -p 5000:5000 textclassify`
+`docker run --name article -p 5050:5050 textclassify`
 
 Сохранить из 1С результат запроса в XLSX за закрытый период (месяц, квартал)
 ```
