@@ -2,14 +2,14 @@ import pandas as pd
 
 from flask import request, jsonify
 from model import train_model, test_model, predict_model
-from textutils import find_best_match
+from textutils import find_best_match, compare_contacts
 
 def setup_routes(app):
 
     @app.route('/ping', methods=['GET','POST'])
     def ping():
         return jsonify({
-            "Ready": "POST train, test, predict or stringmatch. https://github.com/ilya2184/TextClassify"
+            "Ready": "POST train, test, predict, stringmatch or comparelists. https://github.com/ilya2184/TextClassify"
         })
 
     @app.route('/train', methods=['POST'])
@@ -48,4 +48,17 @@ def setup_routes(app):
         return jsonify({
             "prediction": prediction
         })
+    @app.route('/comparelists', methods=['POST'])
+    def comparelists():
+        data = request.get_json()
+        contacts = data.get('contacts', [])
+        checklist = data.get('checklist', [])
+        threshold_high = data.get('threshold_high', 97)
+        threshold_low = data.get('threshold_low', 91)
+        compareresult = compare_contacts(contacts, checklist, threshold_high, threshold_low)
+        return jsonify({
+            "compareresult": compareresult
+        })
+
+
    
