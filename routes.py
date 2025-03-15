@@ -1,8 +1,12 @@
 import pandas as pd
+import threading
+import uuid
 
 from flask import request, jsonify
 from model import train_model, test_model, predict_model
 from textutils import find_best_match, compare_contacts
+
+compare_contacts_tasks = {}
 
 def setup_routes(app):
 
@@ -48,17 +52,42 @@ def setup_routes(app):
         return jsonify({
             "prediction": prediction
         })
-    @app.route('/comparelists', methods=['POST'])
+    
+    def run_comparison(task_id, contacts, checklist, threshold_high, threshold_low):
+        # Запускаем длительную задачу
+        compareresult = compare_contacts(contacts, checklist, threshold_high, threshold_low)
+        compare_contacts_tasks[task_id]['status'] = 'completed'
+        compare_contacts_tasks[task_id]['compareresult'] = compareresult
+
+    @app.route('/comparelists/start', methods=['POST'])
     def comparelists():
         data = request.get_json()
         contacts = data.get('contacts', [])
         checklist = data.get('checklist', [])
         threshold_high = data.get('threshold_high', 97)
         threshold_low = data.get('threshold_low', 91)
-        compareresult = compare_contacts(contacts, checklist, threshold_high, threshold_low)
+
+        # Генерируем уникальный идентификатор задания
+        task_id = str(uuid.uuid4())
+        
+        # Сохраняем состояние задания
+        compare_contacts_tasks[task_id] = {'status': 'in progress', 'compareresult': None}
+        
+        # Запускаем задачу в отдельном потоке
+        threading.Thread(target=run_comparison, args=(task_id, contacts, checklist, threshold_high, threshold_low)).start()
+
+        # Возвращаем идентификатор задания
+        return jsonify({"task_id": task_id}), 202
+
+    @app.route('/comparelists/status', methods=['GET'])
+    def check_status():
+        task_id = request.args.get('taskid')
+        if task_id not in compare_contacts_tasks:
+            return jsonify({"status": "error"}), 404
+
+        task_info = compare_contacts_tasks[task_id]
         return jsonify({
-            "compareresult": compareresult
+            "task_id": task_id,
+            "status": task_info['status'],
+            "compareresult": task_info['compareresult'] if task_info['status'] == 'completed' else None
         })
-
-
-   

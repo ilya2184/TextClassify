@@ -32,7 +32,7 @@ def compare_contacts(contacts, checklist, threshold_high=97, threshold_low=80):
     
     # Определяем количество потоков
     num_cores = os.cpu_count()
-    num_threads = num_cores - 3 # на главного, на очередь и на систему чуть оставим
+    num_threads = (num_cores) // 2
     if num_threads <= 0:
         num_threads = 1
     chunk_size = len(contacts) // num_threads + (len(contacts) % num_threads > 0)
