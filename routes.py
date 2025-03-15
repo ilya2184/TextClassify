@@ -86,8 +86,20 @@ def setup_routes(app):
             return jsonify({"status": "error"}), 404
 
         task_info = compare_contacts_tasks[task_id]
-        return jsonify({
-            "task_id": task_id,
-            "status": task_info['status'],
-            "compareresult": task_info['compareresult'] if task_info['status'] == 'completed' else None
-        })
+
+        if task_info['status'] == 'completed':
+            # Сохраняем результат для ответа
+            result = {
+                "task_id": task_id,
+                "status": task_info['status'],
+                "compareresult": task_info['compareresult']
+            }
+            # Удаляем задачу из словаря
+            del compare_contacts_tasks[task_id]
+            return jsonify(result)
+        else:
+            return jsonify({
+                "task_id": task_id,
+                "status": task_info['status'],
+                "compareresult": None
+            })
